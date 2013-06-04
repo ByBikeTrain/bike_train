@@ -1,4 +1,8 @@
 Ftgg::Application.routes.draw do
+
+  match 'groups/search', to: 'groups#search'
+  match 'groups/:id/join', to: 'groups#join'
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :trips 
@@ -12,7 +16,6 @@ Ftgg::Application.routes.draw do
   match '/signin',    to: 'sessions#new'
   match '/signout',   to: 'sessions#destroy', via: :delete
 
-  get 'groups/search'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

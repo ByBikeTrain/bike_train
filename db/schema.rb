@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130504183805) do
+ActiveRecord::Schema.define(:version => 20130603160820) do
 
   create_table "addresses", :force => true do |t|
     t.string   "line_address"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20130504183805) do
     t.string   "phone"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.float    "lat"
+    t.float    "lng"
   end
 
   create_table "group_memberships", :force => true do |t|
@@ -35,10 +37,27 @@ ActiveRecord::Schema.define(:version => 20130504183805) do
   create_table "groups", :force => true do |t|
     t.integer  "origin_address_id"
     t.integer  "destination_address_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.string   "name"
     t.string   "description"
+    t.text     "origin_address_line"
+    t.text     "destination_address_line"
+    t.float    "origin_address_lat"
+    t.float    "origin_address_lng"
+    t.float    "destination_address_lat"
+    t.float    "destination_address_lng"
+  end
+
+  create_table "routes", :force => true do |t|
+    t.string   "origin_lat"
+    t.string   "origin_lng"
+    t.string   "destination_lat"
+    t.string   "destination_lng"
+    t.datetime "start_time"
+    t.integer  "group_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "trips", :force => true do |t|
@@ -69,5 +88,18 @@ ActiveRecord::Schema.define(:version => 20130504183805) do
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "waypoints", :force => true do |t|
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "waypoints_routes", :force => true do |t|
+    t.integer "waypoint_id"
+    t.integer "route_id"
+    t.integer "order"
+  end
 
 end

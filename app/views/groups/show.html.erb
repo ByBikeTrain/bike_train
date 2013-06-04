@@ -2,8 +2,27 @@
 <h1>
 	<%= @group.name %>
 </h1>
+
+<% if !@group.users.include? current_user %>
+
+<%= link_to "Join Group", :controller => "groups", :action=>"join", class: "btn btn-large btn-primary"%>
+
+<% else %>
+
+<h5>You currently belong to this ride.</h5>
+
+<% end %>
+
 <%= @group.description %><br><br>
 Trip Origin:	
 <%= render "shared/show_address", address: @origin_address %>	
 Trip Destination:
 <%= render "shared/show_address", address: @destination_address %>	
+
+<h5>Other riders in this train:</h5>
+<hr />
+<% for user in @group.users %>
+    <% if(user != current_user) %>
+        <%= user.name %><br />
+    <% end %>
+<% end %> 

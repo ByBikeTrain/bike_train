@@ -2,6 +2,14 @@
 <% content_for :head do %>
    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
    <script>
+   
+   $(document).keypress(
+    function(event){
+     if (event.which == '13') {
+        event.preventDefault();
+      }
+    });
+    
 	function initialize() {
   		var mapOptions = {
 			    center: new google.maps.LatLng(40.697299, -73.979187),
@@ -24,6 +32,8 @@
 			map: map
 		});
 
+        google.maps.visualRefresh = false;
+		
 		google.maps.event.addListener(autocomplete_origin, 'place_changed', function() {
 			infowindow.close();
 			marker.setVisible(false);

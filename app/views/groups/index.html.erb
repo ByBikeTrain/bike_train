@@ -1,6 +1,25 @@
 <% provide(:title, "Groups")%>
 <h1>Groups</h1>
 
+<h1>Find Group</h1>
+<div class="row">
+	<div class="span12">
+		<div class="row">
+			<div class="span6">
+				<%= form_tag("/groups/search", :method => "get") do %>
+				<%= label_tag("Where are you coming from?") %>
+
+				Trip Origin:
+				<%= text_field_tag(:origin) %>	
+				Trip Destination:
+				<%= text_field_tag(:destination) %>	
+
+				<%= submit_tag("Search", class: "btn btn-large btn-primary") %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
 <%= will_paginate %>
 
 <div class="row">
