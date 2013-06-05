@@ -2,6 +2,7 @@ Ftgg::Application.routes.draw do
 
   match 'groups/search', to: 'groups#search'
   match 'groups/:id/join', to: 'groups#join'
+  match 'groups/:id/leave', to: 'groups#leave'
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

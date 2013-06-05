@@ -5,11 +5,11 @@
 
 <% if !@group.users.include? current_user %>
 
-<%= link_to "Join Group", :controller => "groups", :action=>"join", class: "btn btn-large btn-primary"%>
+<%= link_to "Join Group", :controller => "groups", :action=>"join"%>
 
 <% else %>
 
-<h5>You currently belong to this ride.</h5>
+<h5>You currently belong to this ride.</h5> <%= link_to "Leave Group", :controller => "groups", :action => "leave"%>
 
 <% end %>
 

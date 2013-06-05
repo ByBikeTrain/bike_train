@@ -154,8 +154,20 @@ class GroupsController < ApplicationController
             group.users << current_user        
             redirect_to "/groups/#{group.id}", :notice => "You're now part of the ride!"
         else 
-            redirect_to "/groups/#{group.id}", :alert => "You're already a member of this ride"
+            redirect_to "/groups/#{group.id}", :alert => "You're already a member of this ride."
         end
+    end
+    
+    def leave
+        group = Group.find(params[:id])
+        
+        if(group.users.include? current_user)
+            group.users.delete current_user
+            redirect_to "/groups/#{group.id}", :notice => "You've left this group."
+        else
+            redirect_to "/groups/#{group.id}", :notice => "You can't leave a group you're not a member of."        
+        end
+        
     end
 =begin
   	def search
