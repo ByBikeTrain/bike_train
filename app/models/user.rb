@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :groupMemberships
   has_many :groups, :through => :groupMemberships
 
+  has_many :messages, :foreign_key => :recipient_id
+  
   has_secure_password
 
   before_save { |user| user.email = user.email.downcase }

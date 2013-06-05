@@ -4,6 +4,12 @@ class StaticPagesController < ApplicationController
   end
 
   def dashboard
-  	redirect_to home_path if !signed_in?
+    
+    if !signed_in?
+        redirect_to home_path
+    else
+        @messages = Message.where(:recipient_id => current_user.id, :read => false)
+    end
+  	
   end
 end

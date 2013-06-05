@@ -169,6 +169,33 @@ class GroupsController < ApplicationController
         end
         
     end
+    
+    def send_message
+        
+        notice = ""
+        
+        group = Group.find(params[:id])
+        
+        if(params[:text] && group)
+            for user in group.users
+                if(user != current_user)
+                    message = Message.new
+                    message.text = params[:text]
+                    message.sender_id = current_user.id
+                    message.recipient_id = user.id
+                    message.read = false
+                    message.group = group
+                    message.save
+                end
+            end
+            
+            notice = "Message sent!"
+        else
+            notice = "No message sent."
+        end
+        
+        redirect_to "/groups/#{group.id}", :notice => notice
+    end
 =begin
   	def search
   		if(params)

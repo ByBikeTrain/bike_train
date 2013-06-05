@@ -3,12 +3,15 @@ Ftgg::Application.routes.draw do
   match 'groups/search', to: 'groups#search'
   match 'groups/:id/join', to: 'groups#join'
   match 'groups/:id/leave', to: 'groups#leave'
+  match 'groups/:id/send_message', to: 'groups#send_message'
+  match 'messages/:id', to: 'messages#read'
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :trips 
   resources :groups
   resources :searches
+  resources :messages
 
   match '/home', to: 'static_pages#home'
   root to: 'static_pages#dashboard'

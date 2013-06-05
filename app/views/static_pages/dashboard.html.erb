@@ -13,6 +13,11 @@
 			<%= submit_tag "Search", :name => nil %> 
 			<%= link_to_function "Clear", "$('search_field').clear()" %>
 		<% end %>
+		
+		<h5>Unread Messages</h5>
+		<% for message in @messages %>
+    		<%= link_to message.text, "/messages/#{message.id}" %><%if message.group %> - <%= message.group.name %><% end %><br />
+		<% end %>
 
 		<table class="table table-hover">
 			<thead>

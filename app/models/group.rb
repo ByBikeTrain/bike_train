@@ -3,6 +3,8 @@ class Group < ActiveRecord::Base
   has_many :groupMemberships
   has_many :users, :through => :groupMemberships 
 
+  has_many :messages
+  
   attr_accessible :groupMemberships_attributes
   
   accepts_nested_attributes_for :groupMemberships
