@@ -35,10 +35,10 @@ class GroupsController < ApplicationController
    	    origin_geocoded = geocodeAddress params[:origin_address][:line_address]
 	    destination_geocoded = geocodeAddress params[:destination_address][:line_address]
 
-        params[:origin_address][:lat] = origin_geocoded["lat"]
-        params[:origin_address][:lng] = origin_geocoded["lng"]
-        params[:destination_address][:lat] = destination_geocoded["lat"]
-        params[:destination_address][:lng] = destination_geocoded["lng"]
+        #params[:origin_address][:lat] = origin_geocoded["lat"]
+        #params[:origin_address][:lng] = origin_geocoded["lng"]
+        #params[:destination_address][:lat] = destination_geocoded["lat"]
+        #params[:destination_address][:lng] = destination_geocoded["lng"]
   	    
 	    @group = Group.new(params[:group])
 	   	
