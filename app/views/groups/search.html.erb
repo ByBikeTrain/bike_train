@@ -1,0 +1,42 @@
+<% provide(:title, "Search Results")%>
+<h1>Find Groups</h1>
+<div class="row">
+	<div class="span12">
+		<div class="row">
+			<div class="span6">
+				<%= form_tag("/groups/search", :method => "get") do %>
+				<%= label_tag("Where are you coming from?") %>
+
+				Trip Origin:
+				<%= text_field_tag(:origin) %>	
+				Trip Destination:
+				<%= text_field_tag(:destination) %>	
+
+				<%= submit_tag("Search", class: "btn btn-large btn-primary") %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+<h1>Search Results</h1>
+	<div class="span8">
+		<dl>
+		<% @groups.each do |group| %>
+			<dt>
+				<%= link_to group.name, group %>
+			</dt>
+			<dd>
+				<%= group.description %>
+			</dd>
+		<% end %>
+		</dl>
+	</div>
+
+	<div class="span4">
+		<%= link_to "Create Group", new_group_path, class: "btn btn-large btn-primary"%>
+	</div>
+</div>
+
+
