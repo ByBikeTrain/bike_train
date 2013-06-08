@@ -5,6 +5,7 @@ Ftgg::Application.routes.draw do
   match 'groups/:id/leave', to: 'groups#leave'
   match 'groups/:id/send_message', to: 'groups#send_message'
   match 'messages/:id', to: 'messages#read'
+  match 'feed', to: 'groups#groups_within_area'
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

@@ -196,6 +196,18 @@ class GroupsController < ApplicationController
         
         redirect_to "/groups/#{group.id}", :notice => notice
     end
+    
+    def groups_within_area
+    
+        if(params[:lat] && params[:lng])
+              possible_group_matches = Group.where("(origin_address_lat > ? AND origin_address_lat < ?) OR (destination_address_lat > ? AND destination_address_lng < ?)", params[:lat].to_f - 0.02, params[:lat].to_f + 0.02, params[:lng].to_f - 0.02, params[:lng].to_f + 0.02)
+              
+              render :json => {:groups => possible_group_matches}
+        
+        else
+            render :json => {:error => "please provide both a latitude and longitude", :error_num => "1200"}
+        end
+    end
 =begin
   	def search
   		if(params)
